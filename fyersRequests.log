@@ -1,1 +1,2 @@
 {"level":"DEBUG","location":"[post_call:100] fyersModel","message":{"Status Code":400,"API":"/orders/sync"},"timestamp":"2026-04-07 00:27:02,910+0530","service":"FyersAPIRequest","taskName":"Task-4"}
+{"level":"DEBUG","location":"[post_call:100] fyersModel","message":{"Status Code":400,"API":"/orders/sync"},"timestamp":"2026-04-07 00:49:42,589+0530","service":"FyersAPIRequest","taskName":"Task-11"}
