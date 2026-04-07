@@ -9,7 +9,7 @@ def place_single_order(connect):
         log_path="",
     )
     data = {
-        "symbol": "NSE:SBIN-EQ",
+        "symbol": "NSE:TMPV-EQ",
         "qty": 5,
         "type": 2,
         "side": 1,
