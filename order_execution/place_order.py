@@ -14,7 +14,7 @@ def place_single_order(connect):
         "type": 2,
         "side": 1,
         "productType": "INTRADAY",
-        "limitPrice": 0.0030,
+        "limitPrice": 0,
         "stopPrice": 0,
         "validity": "DAY",
         "disclosedQty": 0,
