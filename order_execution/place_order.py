@@ -19,7 +19,7 @@ def place_single_order(connect):
         "validity": "DAY",
         "disclosedQty": 0,
         "offlineOrder": False,
-        "orderTag": "donchian_breakout",
+        "orderTag": "donchianBreakout",
         "isSliceOrder": False,
     }
     response = fyers.place_order(data=data)
