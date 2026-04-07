@@ -1,5 +1,6 @@
 from fyers_apiv3 import fyersModel
 from connection import Connection
+from order_execution.funds import view_funds
 
 class VerificationChecks:
 
@@ -14,12 +15,13 @@ class VerificationChecks:
         return status["count_open"] == 1
 
     def calculate_shares(self):
+
         data = {
             "symbols": self.ticker
         }
         response = self.fyers.quotes(data=data)
         last_traded_price = response["d"][0]["v"]["lp"]
-        capital = self.conn.get("capital")
-        number_of_shares = int(round(capital/last_traded_price,0))
-
+        capital = view_funds(self.conn)
+        capital_percentage = 0.7
+        number_of_shares = int((capital*capital_percentage)/last_traded_price) * 5
         return {"last_traded_price": last_traded_price, "capital": capital, "shares": number_of_shares}

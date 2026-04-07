@@ -1,6 +1,6 @@
 from connection import Connection
 from fastapi import FastAPI
-from order_execution import VerificationChecks, place_single_order
+from order_execution import VerificationChecks, place_single_order, view_funds
 from authentication import update_access_token
 
 ticker = "TMPV"
@@ -26,4 +26,7 @@ async def config_update(access_token):
     data = update_access_token(access_token)
     return data
 
+# if __name__ == "__main__":
+#     print("test")
+#     print(view_funds(conn))
 
