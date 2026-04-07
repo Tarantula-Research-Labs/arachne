@@ -1,7 +1,6 @@
 from fyers_apiv3 import fyersModel
 
-
-def place_single_order(connect):
+def place_single_order(connect, ticker, numberOfShares):
     fyers = fyersModel.FyersModel(
         client_id=connect.get("client_id"),
         token=connect.get("access_token"),
@@ -9,8 +8,8 @@ def place_single_order(connect):
         log_path="",
     )
     data = {
-        "symbol": "NSE:TMPV-EQ",
-        "qty": 5,
+        "symbol": f"NSE:{ticker}-EQ",
+        "qty": numberOfShares,
         "type": 2,
         "side": 1,
         "productType": "INTRADAY",

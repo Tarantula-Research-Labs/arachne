@@ -9,7 +9,6 @@ class Connection:
     def __init__(self):
         self._data = load_config()
 
-
     def get(self, key):
         return self._data.get(key)
 
