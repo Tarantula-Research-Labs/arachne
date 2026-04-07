@@ -15,12 +15,10 @@ async def root():
 
 @app.get("/place-order")
 async def orders():
-    print(vc.active_position())
     if vc.active_position():
         return {"Message": "A position is already active, cannot place new order"}
     else:
         shares = vc.calculate_shares()["shares"]
-        print(shares)
         return place_single_order(conn, ticker, shares)
 
 @app.get("/update_config/{access_token}")
