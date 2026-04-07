@@ -8,39 +8,18 @@ def place_single_order(connect):
         log_path=""
     )
     data = {
-        "symbol": "NSE:TMPV-EQ",
+        "symbol": "NSE:SBIN-EQ",
         "qty": 1,
         "type": 2,
         "side": 1,
-        "productType": "INTRADAY",
-        "limitPrice": 0.0030,
+        "productType": "CNC",
+        "limitPrice": 0,
         "stopPrice": 0,
-        "validity": "IOC",
+        "validity": "DAY",
         "disclosedQty": 0,
         "offlineOrder": False,
-        "orderTag": "tag1",
+        "orderTag": "donchian_breakout",
         "isSliceOrder": False
     }
     response = fyers.place_order(data=data)
     return response
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
