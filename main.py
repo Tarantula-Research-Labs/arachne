@@ -1,6 +1,6 @@
 from connection import Connection
 from fastapi import FastAPI
-from order_execution import VerificationChecks, place_single_order, view_funds
+from order_execution import VerificationChecks, place_single_order, exit_position
 from authentication import update_access_token
 
 ticker = "TMPV"
@@ -25,6 +25,11 @@ async def orders():
 async def config_update(access_token):
     data = update_access_token(access_token)
     return data
+
+@app.get("/exit-all-positions")
+async def exit_all_positions():
+    return exit_position(conn)
+
 
 # if __name__ == "__main__":
 #     print("test")
