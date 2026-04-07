@@ -1,3 +1,5 @@
 arachne
 *.pem
+__pycache__/
+*.pyc
 *.log
