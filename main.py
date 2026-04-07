@@ -12,6 +12,7 @@ async def root():
 
 @app.get("/place-order")
 async def orders():
+    conn = Connection()   # fresh config loaded
     return place_single_order(conn)
 
 @app.get("/update_config/{access_token}")
