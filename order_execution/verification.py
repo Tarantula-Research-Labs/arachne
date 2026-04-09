@@ -23,5 +23,5 @@ class VerificationChecks:
         last_traded_price = response["d"][0]["v"]["lp"]
         capital = view_funds(self.conn)
         capital_percentage = 0.7
-        number_of_shares = int((capital*capital_percentage)/last_traded_price) * 5
+        number_of_shares = int((capital*5*capital_percentage)/last_traded_price)
         return {"last_traded_price": last_traded_price, "capital": capital, "shares": number_of_shares}
