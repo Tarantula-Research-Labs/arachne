@@ -5,9 +5,7 @@ from authentication import update_access_token
 
 ticker = "TMPV"
 app = FastAPI()
-conn = Connection()
-vc = VerificationChecks(ticker)
-
+# conn = Connection()
 
 @app.get("/")
 async def root():
@@ -15,6 +13,8 @@ async def root():
 
 @app.get("/place-order")
 async def orders():
+    vc = VerificationChecks(ticker)
+    conn = Connection()
     if vc.active_position():
         return {"Message": "A position is already active, cannot place new order"}
     else:
@@ -28,6 +28,7 @@ async def config_update(access_token):
 
 @app.get("/exit-all-positions")
 async def exit_all_positions():
+    conn = Connection()
     return exit_position(conn)
 
 
