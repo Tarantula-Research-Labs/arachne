@@ -1,9 +1,9 @@
 from connection import Connection
-from fastapi import FastAPI
+from fastapi import FastAPI, Body
 from order_execution import VerificationChecks, place_single_order, exit_position
 from authentication import update_access_token
 
-ticker = "TMPV"
+# ticker = "TMPV"
 app = FastAPI()
 # conn = Connection()
 
@@ -11,8 +11,9 @@ app = FastAPI()
 async def root():
     return {"Welcome to Arachne, A property of Tarantula Research Labs"}
 
-@app.get("/place-order")
-async def orders():
+@app.post("/place-order")
+async def orders(items: dict = Body(...)):
+    ticker = items["ticker"]
     vc = VerificationChecks(ticker)
     conn = Connection()
     if vc.active_position():
