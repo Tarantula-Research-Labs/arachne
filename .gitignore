@@ -3,3 +3,12 @@ arachne
 __pycache__/
 *.pyc
 *.log
+config.json
+.env
+*.env
+venv/
+.venv/
+*.db
+*.sqlite
+mlruns/
+.DS_Store
