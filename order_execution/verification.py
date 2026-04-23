@@ -11,7 +11,10 @@ class VerificationChecks:
 
     def active_position(self):
         response = self.fyers.positions()
-        status = response["overall"] #This tells the number of active positions, not which one is active. So for the first iteration, we will only focus on number of active position
+        print("positions response:", response)
+        if "overall" not in response:
+            return False
+        status = response["overall"]
         return status["count_open"] == 1
 
     def calculate_shares(self):

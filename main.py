@@ -3,9 +3,7 @@ from fastapi import FastAPI, Body
 from order_execution import VerificationChecks, place_single_order, exit_position
 from authentication import update_access_token
 
-# ticker = "TMPV"
 app = FastAPI()
-# conn = Connection()
 
 @app.get("/")
 async def root():
@@ -14,13 +12,14 @@ async def root():
 @app.post("/place-order")
 async def orders(items: dict = Body(...)):
     ticker = items["ticker"]
+    order_type = items["order_type"]
     vc = VerificationChecks(ticker)
     conn = Connection()
     if vc.active_position():
         return {"Message": "A position is already active, cannot place new order"}
     else:
         shares = vc.calculate_shares()["shares"]
-        return place_single_order(conn, ticker, shares)
+        return place_single_order(conn, ticker, shares, order_type)
 
 @app.get("/update_config/{access_token}")
 async def config_update(access_token):
