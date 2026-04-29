@@ -12,3 +12,5 @@ venv/
 *.sqlite
 mlruns/
 .DS_Store
+testing
+*.ipynb

@@ -1,9 +1,10 @@
 from fyers_apiv3 import fyersModel
+from authentication import get_access_token
 
 def place_single_order(connect, ticker, numberOfShares, order_type):
     fyers = fyersModel.FyersModel(
         client_id=connect.get("client_id"),
-        token=connect.get("access_token"),
+        token=get_access_token(),
         is_async=False,
         log_path="",
     )

@@ -1,1 +1,1 @@
-from .daily_authentication import update_access_token
+from .token_manager import get_access_token

@@ -1,12 +1,13 @@
 from fyers_apiv3 import fyersModel
 from connection import Connection
 from order_execution.funds import view_funds
+from authentication import get_access_token
 
 class VerificationChecks:
 
     def __init__(self, ticker):
         self.conn = Connection()
-        self.fyers = fyersModel.FyersModel(client_id=self.conn.get("client_id"), token=self.conn.get("access_token"), is_async=False, log_path="")
+        self.fyers = fyersModel.FyersModel(client_id=self.conn.get("client_id"), token=get_access_token(), is_async=False, log_path="")
         self.ticker = f"NSE:{ticker.upper()}-EQ"
 
     def active_position(self):
