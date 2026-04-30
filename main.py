@@ -53,7 +53,7 @@ def get_token():
 @app.post("/bot/start")
 def start_bot():
     try:
-        subprocess.run(["systemctl", "start", "trading-bot"], check=True)
+        subprocess.run(["sudo", "systemctl", "start", "trading-bot"], check=True)
         return {"status": "bot started"}
     except subprocess.CalledProcessError as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -62,7 +62,7 @@ def start_bot():
 @app.post("/bot/stop")
 def stop_bot():
     try:
-        subprocess.run(["systemctl", "stop", "trading-bot"], check=True)
+        subprocess.run(["sudo", "systemctl", "stop", "trading-bot"], check=True)
         return {"status": "bot stopped"}
     except subprocess.CalledProcessError as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -71,7 +71,7 @@ def stop_bot():
 @app.post("/bot/restart")
 def restart_bot():
     try:
-        subprocess.run(["systemctl", "restart", "trading-bot"], check=True)
+        subprocess.run(["sudo", "systemctl", "start", "trading-bot"], check=True)
         return {"status": "bot restarted"}
     except subprocess.CalledProcessError as e:
         raise HTTPException(status_code=500, detail=str(e))
