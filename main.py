@@ -2,13 +2,14 @@ from connection import Connection
 from fastapi import FastAPI, Body, HTTPException
 from order_execution import VerificationChecks, place_single_order, exit_position
 import boto3
-from routers import bot_controllers
+from routers import bot_controllers, daily_authentication
 # from order_execution import view_funds, VerificationChecks
 
 app = FastAPI()
 
 #Bot Controller
 app.include_router(bot_controllers.router)
+app.include_router(daily_authentication.router)
 
 
 ssm = boto3.client("ssm", region_name="ap-south-1")
