@@ -2,10 +2,15 @@ from connection import Connection
 from fastapi import FastAPI, Body, HTTPException
 from order_execution import VerificationChecks, place_single_order, exit_position
 import boto3
-import subprocess
+from routers import bot_controllers
 # from order_execution import view_funds, VerificationChecks
 
 app = FastAPI()
+
+#Bot Controller
+app.include_router(bot_controllers.router)
+
+
 ssm = boto3.client("ssm", region_name="ap-south-1")
 PARAM_NAME = "/trading/access_token"
 
@@ -31,6 +36,10 @@ async def exit_all_positions():
     conn = Connection()
     return exit_position(conn)
 
+
+
+#Create and save token
+
 @app.post("/update-token")
 def update_token(token: str):
     ssm.put_parameter(
@@ -48,36 +57,6 @@ def get_token():
         WithDecryption=True
     )
     return {"token": response["Parameter"]["Value"]}
-
-
-@app.post("/bot/start")
-def start_bot():
-    try:
-        subprocess.run(["sudo", "systemctl", "start", "trading-bot"], check=True)
-        return {"status": "bot started"}
-    except subprocess.CalledProcessError as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-
-@app.post("/bot/stop")
-def stop_bot():
-    try:
-        subprocess.run(["sudo", "systemctl", "stop", "trading-bot"], check=True)
-        return {"status": "bot stopped"}
-    except subprocess.CalledProcessError as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-
-@app.post("/bot/restart")
-def restart_bot():
-    try:
-        subprocess.run(["sudo", "systemctl", "start", "trading-bot"], check=True)
-        return {"status": "bot restarted"}
-    except subprocess.CalledProcessError as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-
-
 
 
 # if __name__ == "__main__":
