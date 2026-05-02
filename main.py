@@ -1,11 +1,21 @@
 from connection import Connection
 from fastapi import FastAPI, Body, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from order_execution import VerificationChecks, place_single_order, exit_position
 import boto3
 from routers import bot_controllers, daily_authentication
 # from order_execution import view_funds, VerificationChecks
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:3000",                  # local dev
+        "https://argus.tarantularesearch.com",   # replace with your actual frontend domain
+    ],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 #Bot Controller
 app.include_router(bot_controllers.router)
