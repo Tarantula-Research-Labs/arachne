@@ -19,6 +19,7 @@ app.add_middleware(
 
 #Bot Controller
 app.include_router(bot_controllers.router)
+#Daily Authentication
 app.include_router(daily_authentication.router)
 
 
@@ -46,28 +47,6 @@ async def orders(items: dict = Body(...)):
 async def exit_all_positions():
     conn = Connection()
     return exit_position(conn)
-
-
-
-#Create and save token
-
-@app.post("/update-token")
-def update_token(token: str):
-    ssm.put_parameter(
-        Name=PARAM_NAME,
-        Value=token,
-        Type="SecureString",
-        Overwrite=True
-    )
-    return {"message": "Token updated"}
-
-@app.get("/token")
-def get_token():
-    response = ssm.get_parameter(
-        Name=PARAM_NAME,
-        WithDecryption=True
-    )
-    return {"token": response["Parameter"]["Value"]}
 
 
 # if __name__ == "__main__":
