@@ -20,10 +20,10 @@ from authentication import get_access_token
 def create_exit_position(orderType,ltp):
     if orderType == 1:
         orderType = "short"
-        limitPrice = ltp*(1-0.001)
+        limitPrice = ltp
     else:
         orderType="long"
-        limitPrice = ltp*(1+0.001)
+        limitPrice = ltp
 
     return orderType, limitPrice
 
