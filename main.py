@@ -43,10 +43,14 @@ async def orders(items: dict = Body(...)):
         shares = vc.calculate_shares()["shares"]
         return place_single_order(conn, ticker, shares, order_type)
 
-@app.get("/exit-all-positions")
-async def exit_all_positions():
+@app.post("/exit-all-positions")
+async def exit_all_positions(items: dict = Body(...)):
+    ticker = items["ticker"]
+    numOfshares = items["numOfshares"]
+    orderType = items["orderType"]
+    ltp = items["ltp"]
     conn = Connection()
-    return exit_position(conn)
+    return exit_position(conn, ticker, numOfshares, orderType, ltp)
 
 
 # if __name__ == "__main__":
