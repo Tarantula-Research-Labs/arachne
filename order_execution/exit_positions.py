@@ -40,7 +40,7 @@ def exit_position(connect, ticker, numberOfShares, order_type, ltp):
     )
     print(order_type)
     data = {
-        "symbol": f"NSE:{ticker}-EQ",
+        "symbol": ticker,
         "qty": numberOfShares,
         "type": 1,
         "side": 1 if orderType == "long" else -1,
