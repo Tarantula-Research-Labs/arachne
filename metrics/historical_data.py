@@ -31,7 +31,7 @@ def send_historical_data(connection):
     "symbol":"NSE:TMPV-EQ",
     "resolution":"D",
     "date_format":"1",
-    "range_from":"2026-05-01",
+    "range_from":(datetime.now() - timedelta(days=45)).strftime("%Y-%m-%d"),
     "range_to":datetime.now().strftime("%Y-%m-%d"),
     "cont_flag":"1"
     }
