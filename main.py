@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from order_execution import VerificationChecks, place_single_order, exit_position
 import boto3
 from routers import bot_controllers, daily_authentication
+from metrics import send_historical_data
 # from order_execution import view_funds, VerificationChecks
 
 app = FastAPI()
@@ -53,10 +54,11 @@ async def exit_all_positions(items: dict = Body(...)):
     return exit_position(conn, ticker, numOfshares, orderType, ltp)
 
 
-# if __name__ == "__main__":
-#     print("test")
-#     conn = Connection()
-#     print(view_funds(conn))
-#     vc = VerificationChecks("TMPV")
-#     print(vc.active_position())
+if __name__ == "__main__":
+    print("test")
+    conn = Connection()
+    send_historical_data(conn)
+    # print(view_funds(conn))
+    # vc = VerificationChecks("TMPV")
+    # print(vc.active_position())
 
