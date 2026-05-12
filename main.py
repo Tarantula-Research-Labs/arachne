@@ -54,10 +54,10 @@ async def exit_all_positions(items: dict = Body(...)):
     return exit_position(conn, ticker, numOfshares, orderType, ltp)
 
 
-if __name__ == "__main__":
-    print("test")
-    conn = Connection()
-    send_historical_data(conn)
+# if __name__ == "__main__":
+#     print("test")
+#     conn = Connection()
+#     send_historical_data(conn)
     # print(view_funds(conn))
     # vc = VerificationChecks("TMPV")
     # print(vc.active_position())
