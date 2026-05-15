@@ -26,7 +26,7 @@ class VerificationChecks:
         response = self.fyers.quotes(data=data)
         last_traded_price = response["d"][0]["v"]["lp"]
         # capital = view_funds(self.conn)
-        capital = 2200
+        capital = 1100
         # capital_percentage = 0.5
         # number_of_shares = int((capital*5*capital_percentage)/last_traded_price)
         number_of_shares = int((capital*5)/last_traded_price)
